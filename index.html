@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The American Political Divide — An Ideological History</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dem: #1a4a8a;
+    --dem-light: #3a6fbb;
+    --dem-pale: #d6e4f7;
+    --rep: #8b1a1a;
+    --rep-light: #c0392b;
+    --rep-pale: #f7d6d6;
+    --gold: #c9a84c;
+    --ink: #1a1a18;
+    --paper: #f5f0e8;
+    --paper-dark: #ede7d6;
+    --gray: #6b6b60;
+    --rule: #c8bfa8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 39px,
+      rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px
+    );
+  }
+  .masthead-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .masthead h1 em { font-style: italic; color: var(--gold); }
+  .masthead-sub {
+    margin-top: 1.2rem;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #bbb;
+    max-width: 600px;
+    margin-left: auto; margin-right: auto;
+    position: relative;
+  }
+  .masthead-rule {
+    margin: 2rem auto 0;
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    position: relative;
+  }
+
+  /* ── NAV ── */
+  .toc-bar {
+    background: var(--paper-dark);
+    border-bottom: 2px solid var(--rule);
+    border-top: 2px solid var(--rule);
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .toc-bar a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc-bar a:hover { color: var(--ink); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .lead {
+    font-size: 1.08rem;
+    max-width: 720px;
+    color: #3a3a35;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  /* ── PARTY COLUMNS ── */
+  .party-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 2rem 0;
+  }
+  @media (max-width: 680px) { .party-grid { grid-template-columns: 1fr; } }
+
+  .party-col {
+    padding: 2rem;
+    position: relative;
+  }
+  .party-col.dem { background: var(--dem-pale); border-top: 5px solid var(--dem); }
+  .party-col.rep { background: var(--rep-pale); border-top: 5px solid var(--rep); }
+
+  .party-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .party-col.dem h3 { color: var(--dem); }
+  .party-col.rep h3 { color: var(--rep); }
+
+  .party-col .founded {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+  .party-col p { font-size: 0.95rem; color: #2a2a25; }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 2.5rem 0;
+    padding-left: 2px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--rule);
+    transform: translateX(-50%);
+  }
+  @media (max-width: 680px) {
+    .timeline::before { left: 18px; }
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 680px) {
+    .tl-item { grid-template-columns: 36px 1fr; }
+  }
+
+  .tl-left, .tl-right {
+    padding: 0 1.8rem;
+  }
+  .tl-left { text-align: right; }
+  .tl-right { text-align: left; }
+  @media (max-width: 680px) {
+    .tl-left { display: none; }
+    .tl-right { padding-left: 1rem; }
+  }
+
+  .tl-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.3rem;
+  }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 3px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--rule);
+    background: var(--ink);
+    flex-shrink: 0;
+    margin-bottom: 4px;
+  }
+  .tl-dot.dem { background: var(--dem); box-shadow: 0 0 0 2px var(--dem); }
+  .tl-dot.rep { background: var(--rep); box-shadow: 0 0 0 2px var(--rep); }
+  .tl-dot.both {
+    background: linear-gradient(135deg, var(--dem) 50%, var(--rep) 50%);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .tl-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .tl-card {
+    background: white;
+    border-radius: 2px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .tl-card.dem { border-left: 3px solid var(--dem); }
+  .tl-card.rep { border-right: 3px solid var(--rep); }
+  .tl-card.both { border-left: 3px solid var(--gold); border-right: 3px solid var(--gold); }
+  .tl-right .tl-card.rep { border-left: 3px solid var(--rep); border-right: none; }
+
+  .tl-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .tl-left .tl-card h4 { color: var(--dem); }
+  .tl-right .tl-card h4 { color: var(--rep); }
+  .tl-card.both h4 { color: var(--ink); }
+  .tl-card p { font-size: 0.88rem; color: #444; line-height: 1.55; }
+
+  /* ── SHIFT BOX ── */
+  .shift-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .shift-box::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    position: absolute;
+    right: -1rem; top: -4rem;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .shift-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .shift-box p { max-width: 700px; font-size: 0.97rem; line-height: 1.75; }
+  .shift-box .source-note {
+    margin-top: 1.2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: #888;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ERA CARDS ── */
+  .era-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .era-card {
+    background: white;
+    border-top: 4px solid var(--gold);
+    padding: 1.5rem;
+    position: relative;
+  }
+  .era-card .era-years {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+  .era-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+  .era-card p { font-size: 0.88rem; color: #444; }
+
+  /* ── PARTISAN METER ── */
+  .partisan-section { }
+  .partisan-intro { margin-bottom: 2rem; }
+
+  .polarization-bar {
+    margin: 2rem 0;
+    position: relative;
+  }
+  .pol-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+  .pol-track {
+    height: 24px;
+    background: linear-gradient(to right, var(--dem-pale), #e8e0cc, var(--rep-pale));
+    border: 1px solid var(--rule);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pol-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    transition: width 0.6s ease;
+  }
+  .pol-track .center-line {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(0,0,0,0.25);
+    transform: translateX(-50%);
+  }
+  .pol-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+  .pol-row-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .pol-row-note {
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-style: italic;
+  }
+  .pol-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-align: right;
+  }
+
+  /* ── TODAY TABLE ── */
+  .today-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 680px) { .today-grid { grid-template-columns: 1fr; } }
+
+  .today-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid;
+    margin-bottom: 1.2rem;
+  }
+  .today-col.dem h3 { color: var(--dem); border-color: var(--dem); }
+  .today-col.rep h3 { color: var(--rep); border-color: var(--rep); }
+
+  .ideology-tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    margin: 0.2rem 0.2rem 0.2rem 0;
+  }
+  .ideology-tag.dem { background: var(--dem); color: white; }
+  .ideology-tag.dem-light { background: var(--dem-pale); color: var(--dem); }
+  .ideology-tag.rep { background: var(--rep); color: white; }
+  .ideology-tag.rep-light { background: var(--rep-pale); color: var(--rep); }
+
+  .today-item {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .today-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .today-item h5 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+  }
+  .today-item p { font-size: 0.9rem; color: #333; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--paper-dark);
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.93rem;
+    font-style: italic;
+    color: #3a3a30;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #888;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+  }
+  footer strong { color: var(--gold); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  section { animation: fadeUp 0.5s ease both; }
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+
+  .divider {
+    text-align: center;
+    color: var(--rule);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    margin: 0.5rem 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-kicker">A Political History Report · United States · 1792–2026</div>
+  <h1>The <em>Ideological</em> History<br>of Two Parties</h1>
+  <p class="masthead-sub">How the Democratic and Republican Parties formed, transformed, and polarized over more than two centuries</p>
+  <div class="masthead-rule"></div>
+</div>
+
+<nav class="toc-bar">
+  <a href="#origins">Origins</a>
+  <a href="#ideology-history">Ideology History</a>
+  <a href="#the-switch">The Great Switch</a>
+  <a href="#partisanship">Rise of Partisanship</a>
+  <a href="#today">Today's Makeup</a>
+  <a href="#geo-map">Electoral Maps</a>
+  <a href="#ideology-chart">Ideology Chart</a>
+  <a href="#era-comparison">Era Comparison</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1: ORIGINS
+═══════════════════════════════════════════════════════ -->
+<section id="origins">
+  <div class="container">
+    <div class="section-label">§ 01 — Party Origins</div>
+    <h2 class="section-title">Where Did Each Party Come From?</h2>
+    <p class="lead">The two major parties were not born simultaneously, nor did they start with the ideologies they hold today. Their founding philosophies were, in many respects, the inverse of their current positions.</p>
+
+    <div class="party-grid">
+      <div class="party-col dem">
+        <h3>Democratic Party</h3>
+        <p class="founded">Founded c. 1828 · Originally: Democratic-Republicans</p>
+        <p>The Democratic Party traces its roots to Thomas Jefferson's Democratic-Republican party and was formally organized by Andrew Jackson and Martin Van Buren around 1828. Early Democrats championed <strong>states' rights, agrarian interests, and limited federal government</strong> — positioning themselves against a powerful central bank and against "elite" Eastern commercial interests. They were the party of the <em>common white man</em> (though not of enslaved people), and were dominant in the South and rural regions for over a century.</p>
+      </div>
+      <div class="party-col rep">
+        <h3>Republican Party</h3>
+        <p class="founded">Founded 1854 · Anti-slavery coalition</p>
+        <p>The Republican Party was founded in 1854 in Ripon, Wisconsin, as a direct response to the Kansas-Nebraska Act, which threatened to expand slavery. It was a coalition of anti-slavery Whigs, Free Soilers, and Northern Democrats. Early Republicans believed in a <strong>strong federal government, protective tariffs to build industry, and the abolition of slavery</strong>. Abraham Lincoln, elected in 1860, was their first president and embodied a vision of active federal power in service of national unity.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      Key insight: At their founding, Democrats favored <strong>small government and states' rights</strong> while Republicans favored <strong>strong federal power and national programs</strong> — nearly the opposite of their modern reputations.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2: IDEOLOGY THROUGH HISTORY (TIMELINE)
+═══════════════════════════════════════════════════════ -->
+<section id="ideology-history">
+  <div class="container">
+    <div class="section-label">§ 02 — Ideology Through History</div>
+    <h2 class="section-title">Each Party's Ideology, Era by Era</h2>
+    <p class="lead">Both parties evolved dramatically across five distinct eras. What they stood for in 1860 bears little resemblance to 1960, which itself bears little resemblance to today.</p>
+
+    <div class="timeline">
+
+      <!-- 1828 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Jacksonian Democracy</h4>
+            <p>Democrats champion populism, states' rights, westward expansion (Indian removal), and opposition to a national bank. The party of the rural South and West.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot dem"></div>
+          <div class="tl-year">1828</div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <!-- 1854 -->
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-node">
+          <div class="tl-dot rep"></div>
+          <div class="tl-year">1854</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Republican Party Founded</h4>
+            <p>Anti-slavery coalition forms. Republicans back federal power, protective tariffs, and "free labor" — the idea that men should be able to rise economically through their own work.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1860–1877 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Civil War & Reconstruction</h4>
+            <p>Democrats split: Northern Democrats oppose war; Southern Democrats defend slavery and later resist Reconstruction, forming the foundation of "Solid South" politics.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">1860–1877</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>The Party of Lincoln</h4>
+            <p>Republicans pass the 13th, 14th, and 15th Amendments, establish the Freedmen's Bureau, and push federal Reconstruction in the South. The "Radical Republicans" are the reformers of their day.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1880–1920 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Populism & William Jennings Bryan</h4>
+            <p>Democrats align with farmers, debtors, and laborers against Gilded Age elites. Bryan's "Cross of Gold" speech (1896) defines a populist, pro-worker, anti-monopoly identity — still largely conservative on social issues.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">1880–1920</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Gilded Age & Progressivism</h4>
+            <p>Republicans are the party of business, industry, and high tariffs. But TR (Theodore Roosevelt) also launches a progressive wing — busting trusts, protecting national lands, and regulating railroads. The party holds internal contradictions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1932–1952 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>The New Deal Coalition</h4>
+            <p>FDR transforms the Democrats into the party of active federal government, labor unions, Social Security, and economic intervention. The New Deal coalition unites Northern liberals, organized labor, Black voters in the North, and — awkwardly — segregationist Southern whites.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">1932–1952</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Conservative Opposition</h4>
+            <p>Republicans increasingly position themselves against the New Deal's expansion of federal power. Eisenhower moderates this stance somewhat, accepting popular social programs while resisting further expansion — a "Modern Republicanism."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1964–1980 THE SWITCH -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Civil Rights & The Great Society</h4>
+            <p>LBJ signs the Civil Rights Act (1964) and Voting Rights Act (1965), causing the Solid South to begin its exodus from the Democratic Party. Democrats fully embrace federal activism on race, poverty, and social programs.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">1964–1980</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Nixon's Southern Strategy</h4>
+            <p>Republicans deliberately court disaffected white Southern voters through racially coded appeals to "law and order" and opposition to forced busing. The partisan South begins its realignment toward the GOP. Reagan solidifies the coalition in 1980.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1994–2008 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Third Way / Clintonism</h4>
+            <p>Responding to Reagan's dominance, Clinton moves Democrats to the center: welfare reform, NAFTA, "tough on crime" policies, and deficit reduction. The party tries to occupy the ideological middle while retaining labor and minority coalitions.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">1994–2008</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Gingrich Revolution & "Culture Wars"</h4>
+            <p>The Republican Revolution of 1994 hardens the party's anti-government, anti-tax stance. Social conservatism — opposition to abortion, gay rights — becomes a central organizing force through the Religious Right and the Moral Majority.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2010–2026 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-card dem">
+            <h4>Progressive Surge</h4>
+            <p>Obama era energizes a younger, more racially diverse coalition. After 2016, the Sanders wing grows: Medicare for All, Green New Deal, criminal justice reform, and expanded identity politics move the party's center of gravity leftward.</p>
+          </div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-dot both"></div>
+          <div class="tl-year">2010–2026</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-card rep">
+            <h4>Tea Party → MAGA</h4>
+            <p>The Tea Party (2009) hardens anti-government, anti-immigration sentiment. Trump's 2016 election reshapes the party: nationalist, populist, skeptical of free trade, and centered on a personal loyalty to Trump over traditional conservative principles.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3: THE GREAT SWITCH
+═══════════════════════════════════════════════════════ -->
+<section id="the-switch">
+  <div class="container">
+    <div class="section-label">§ 03 — The Great Realignment</div>
+    <h2 class="section-title">When Did the Parties Switch?</h2>
+    <p class="lead">No single moment explains the full transformation, but the period from 1933 to 1980 constitutes the most dramatic ideological realignment in American political history.</p>
+
+    <div class="shift-box">
+      <h3>The Long Realignment: 1933–1980</h3>
+      <p>The parties did not simply "swap" overnight. The transformation was a 50-year process driven by several overlapping forces. The New Deal (1933) began pulling the Democratic Party toward federal activism. The Civil Rights Movement (1955–1968) forced the decisive break: when LBJ signed landmark civil rights legislation, he reportedly told an aide, <em>"We have lost the South for a generation."</em> He was right — and the realignment was permanent. The Republican Party absorbed white Southern conservatives through Nixon's "Southern Strategy" (1968) and Reagan's coalition building (1980), completing a shift that had been decades in the making.</p>
+      <p class="source-note">KEY INFLECTION POINTS: New Deal (1933) · Brown v. Board (1954) · Civil Rights Act (1964) · Nixon Southern Strategy (1968) · Reagan Revolution (1980)</p>
+    </div>
+
+    <div class="era-grid">
+      <div class="era-card">
+        <div class="era-years">1933–1945</div>
+        <h4>The New Deal Pivot</h4>
+        <p>FDR's Democrats embrace big government, reversing the party's original states'-rights stance. Republicans reposition as opponents of federal expansion.</p>
+      </div>
+      <div class="era-card">
+        <div class="era-years">1948</div>
+        <h4>Dixiecrat Revolt</h4>
+        <p>Strom Thurmond's States' Rights Party signals the beginning of Southern white conservatives' departure from the Democratic Party — decades before it's complete.</p>
+      </div>
+      <div class="era-card">
+        <div class="era-years">1964–1965</div>
+        <h4>Civil Rights Legislation</h4>
+        <p>LBJ's signing of the Civil Rights and Voting Rights Acts alienates the South permanently. Five Deep South states flip to Goldwater (R) in 1964 for the first time since Reconstruction.</p>
+      </div>
+      <div class="era-card">
+        <div class="era-years">1968–1972</div>
+        <h4>Nixon's Southern Strategy</h4>
+        <p>Republicans deliberately appeal to white Southern disaffection through coded messaging. Nixon wins in 1968; by 1972, the partisan map is visibly reorienting.</p>
+      </div>
+      <div class="era-card">
+        <div class="era-years">1980</div>
+        <h4>The Reagan Revolution</h4>
+        <p>Reagan unites fiscal conservatives, social conservatives, and the Religious Right into a durable coalition. "Government is not the solution to our problem — government <em>is</em> the problem." The modern GOP is born.</p>
+      </div>
+      <div class="era-card">
+        <div class="era-years">1994</div>
+        <h4>Gingrich & Contract with America</h4>
+        <p>Republicans retake the House for the first time in 40 years. Newt Gingrich nationalizes congressional elections and hardwires partisan warfare into legislative strategy — a preview of today's politics.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4: RISE OF PARTISANSHIP
+═══════════════════════════════════════════════════════ -->
+<section id="partisanship">
+  <div class="container">
+    <div class="section-label">§ 04 — The Rise of Partisan Politics</div>
+    <h2 class="section-title">When Partisanship Began — and When It Exploded</h2>
+    <p class="lead">Partisanship has always existed in American politics, but the <em>degree</em> of polarization — measured by ideological sorting, cross-party voting, and mutual hostility — is historically unprecedented in the modern era.</p>
+
+    <div class="callout">
+      Scholars distinguish between <strong>partisan sorting</strong> (parties becoming ideologically consistent) and <strong>affective polarization</strong> (voters actively disliking the other party). Both have accelerated sharply since the 1990s.
+    </div>
+
+    <div style="margin: 2rem 0;">
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--ink);">Partisan Polarization — Key Moments</h3>
+
+      <div class="pol-row" style="border-bottom: 1px solid var(--rule); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--gray); letter-spacing: 0.1em;">ERA</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--gray); letter-spacing: 0.1em;">DESCRIPTION</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--gray); letter-spacing: 0.1em; text-align: right;">INTENSITY</div>
+      </div>
+
+      <div class="pol-row">
+        <div class="pol-row-year">1870s–1890s</div>
+        <div class="pol-row-note">Gilded Age partisanship: high party loyalty but considerable cross-aisle cooperation on tariffs and regional issues. "Waving the bloody shirt" rhetoric is fierce but governing coalitions remain fluid.</div>
+        <div class="pol-score">★★☆☆☆</div>
+      </div>
+      <div class="pol-row">
+        <div class="pol-row-year">1930s–1960s</div>
+        <div class="pol-row-note">The New Deal era features high <em>party loyalty</em> at the ballot box but remarkable cross-party <em>legislating</em>. Conservative Southern Democrats routinely block civil rights bills alongside Republicans. Ideological sorting is low — both parties contain liberals and conservatives.</div>
+        <div class="pol-score">★★☆☆☆</div>
+      </div>
+      <div class="pol-row">
+        <div class="pol-row-year">1964–1980</div>
+        <div class="pol-row-note">Sorting begins. After the Civil Rights Act, conservative Democrats begin leaving for the GOP while liberal Republicans (the "Rockefeller Republicans") fade. The ideological overlap between parties starts to narrow.</div>
+        <div class="pol-score">★★★☆☆</div>
+      </div>
+      <div class="pol-row">
+        <div class="pol-row-year">1994</div>
+        <div class="pol-row-note"><strong>Gingrich Revolution.</strong> Newt Gingrich systematically weaponizes partisanship as a governing strategy — nationalizing congressional races, vilifying Democrats, and breaking with norms of cross-party cooperation. This is widely cited as the inflection point for modern hyper-partisanship.</div>
+        <div class="pol-score">★★★★☆</div>
+      </div>
+      <div class="pol-row">
+        <div class="pol-row-year">2008–2016</div>
+        <div class="pol-row-note">Obama's election and the Tea Party backlash create a new level of ideological intensity. Mitch McConnell's Senate strategy of total obstruction — blocking even Merrick Garland's Supreme Court hearing — signals a new era of hardball partisanship.</div>
+        <div class="pol-score">★★★★☆</div>
+      </div>
+      <div class="pol-row">
+        <div class="pol-row-year">2016–Present</div>
+        <div class="pol-row-note"><strong>Peak polarization.</strong> Trump's presidency and the MAGA movement collapse the distinction between party and personal loyalty. Social media amplifies outrage and tribal identity. Pew Research data shows the ideological overlap between rank-and-file Democrats and Republicans has nearly vanished — for the first time in modern polling history.</div>
+        <div class="pol-score">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="shift-box">
+      <h3>When Did Partisan Politics "Take Off"?</h3>
+      <p>Most political scientists point to <strong>1994</strong> as the watershed moment when partisan warfare became a deliberate legislative strategy rather than a natural byproduct of disagreement. The Gingrich Revolution made obstructing and delegitimizing the opposing party — rather than compromising with it — a winning electoral formula. This was then turbocharged by <strong>the rise of partisan media</strong> (Fox News launched 1996, MSNBC followed), the <strong>internet and social media</strong> (2004–2012), and the <strong>gerrymandering era</strong> that produced safe districts rewarding ideological purity over moderation.</p>
+      <p class="source-note">ACADEMIC CONSENSUS: Political scientists Nolan McCarty, Keith Poole, and Howard Rosenthal's DW-NOMINATE scores show Congressional polarization reached levels unseen since the post-Civil War era by 2010, and continued rising through 2024.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5: TODAY
+═══════════════════════════════════════════════════════ -->
+<section id="today">
+  <div class="container">
+    <div class="section-label">§ 05 — Today's Ideological Makeup</div>
+    <h2 class="section-title">Where Each Party Stands in 2026</h2>
+    <p class="lead">Both parties are internally complex coalitions, not monolithic blocks. Understanding their wings, tensions, and dominant ideologies requires looking at several dimensions simultaneously.</p>
+
+    <div class="today-grid">
+      <!-- DEMOCRATS -->
+      <div class="today-col dem">
+        <h3>Democratic Party — 2026</h3>
+
+        <div style="margin-bottom: 1.2rem;">
+          <span class="ideology-tag dem">Center-Left</span>
+          <span class="ideology-tag dem">Progressive</span>
+          <span class="ideology-tag dem-light">Democratic Socialist</span>
+          <span class="ideology-tag dem-light">Liberal</span>
+          <span class="ideology-tag dem-light">Moderate</span>
+        </div>
+
+        <div class="today-item">
+          <h5>Core Identity</h5>
+          <p>A pluralist, multi-racial coalition unified by support for social safety nets, civil rights, environmental regulation, and acceptance of demographic change. The party spans from moderate centrists to democratic socialists.</p>
+        </div>
+        <div class="today-item">
+          <h5>Economic Views</h5>
+          <p>Favor regulated capitalism, progressive taxation, expanded social programs (healthcare, housing, childcare), union rights, and climate investment. A growing wing supports Medicare for All; the center prefers the ACA and targeted expansion.</p>
+        </div>
+        <div class="today-item">
+          <h5>Social Views</h5>
+          <p>Strong consensus on abortion rights, LGBTQ+ protections, racial equity, and immigration reform. Debates remain about the pace and framing of progressive cultural change — particularly after 2024 losses among working-class voters.</p>
+        </div>
+        <div class="today-item">
+          <h5>Internal Tensions</h5>
+          <p>Centrists (associated with Biden/Pelosi) vs. progressives (Sanders/AOC/The Squad). Growing friction over Israel-Gaza, policing, and how to recapture working-class voters who shifted toward Trump. Post-2024, the party is in active ideological recalibration.</p>
+        </div>
+        <div class="today-item">
+          <h5>Electoral Coalition</h5>
+          <p>College-educated voters (especially women), Black and Hispanic voters, urban populations, younger voters, professionals, and union households. Working-class voters without college degrees — once a Democratic pillar — have trended Republican since 2016.</p>
+        </div>
+      </div>
+
+      <!-- REPUBLICANS -->
+      <div class="today-col rep">
+        <h3>Republican Party — 2026</h3>
+
+        <div style="margin-bottom: 1.2rem;">
+          <span class="ideology-tag rep">MAGA Populist</span>
+          <span class="ideology-tag rep">National Conservative</span>
+          <span class="ideology-tag rep-light">Traditional Conservative</span>
+          <span class="ideology-tag rep-light">Libertarian-Leaning</span>
+          <span class="ideology-tag rep-light">Moderate</span>
+        </div>
+
+        <div class="today-item">
+          <h5>Core Identity</h5>
+          <p>Increasingly defined by Trumpist nationalism, skepticism of globalism and institutional authority, and cultural conservatism. Traditional fiscal conservatism has been partially displaced by economic populism and tariff-backed industrial policy.</p>
+        </div>
+        <div class="today-item">
+          <h5>Economic Views</h5>
+          <p>The party has moved away from Reagan-era free trade toward economic nationalism and tariffs. Tax cuts remain central, but entitlement reform (once a GOP priority) has been deprioritized. The Trump coalition is skeptical of Wall Street and international trade deals.</p>
+        </div>
+        <div class="today-item">
+          <h5>Social Views</h5>
+          <p>Opposition to abortion (post-Dobbs era), support for traditional family structures, opposition to "woke" education and DEI programs, and hardline immigration restriction. Social conservatism remains a major organizing force via the evangelical Christian coalition.</p>
+        </div>
+        <div class="today-item">
+          <h5>Internal Tensions</h5>
+          <p>A small but vocal "Never Trump" / traditional conservative remnant (Cheney, Romney legacy voters) vs. the dominant MAGA wing. Tensions between libertarian-leaning Republicans on spending and social issues vs. the party's populist-nationalist core.</p>
+        </div>
+        <div class="today-item">
+          <h5>Electoral Coalition</h5>
+          <p>White voters without college degrees, evangelical Christians, rural voters, small business owners, gun owners, and a growing share of working-class Hispanic and Black male voters. The party's coalition has become simultaneously less elite and more culturally populist.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The Paradox of 2026:</strong> The party that was founded to end slavery (Republican) now anchors its coalition in the formerly Democratic South, while the party founded on states' rights and limited government (Democrat) now advocates for federal power and expanded social programs. Both parties have effectively traded their founding philosophies.
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 6: GEOGRAPHIC MAP OVER TIME
+═══════════════════════════════════════════════════════ -->
+<section id="geo-map">
+  <div class="container">
+    <div class="section-label">§ 06 — Geographic Realignment</div>
+    <h2 class="section-title">The Electoral Map Through History</h2>
+    <p class="lead">The physical geography of each party's support has inverted over 170 years. The "Solid South" was once the Democratic heartland; today it is the Republican base. Use the era selector to trace the transformation.</p>
+
+    <div id="map-app" style="background:white; border: 1px solid var(--rule); padding: 1.5rem 1.5rem 2rem;">
+      <!-- Era selector -->
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.4rem; justify-content:center;">
+        <button class="era-btn active" data-era="1860" onclick="setEra('1860',this)">1860 — Civil War</button>
+        <button class="era-btn" data-era="1896" onclick="setEra('1896',this)">1896 — Gilded Age</button>
+        <button class="era-btn" data-era="1932" onclick="setEra('1932',this)">1932 — New Deal</button>
+        <button class="era-btn" data-era="1964" onclick="setEra('1964',this)">1964 — Civil Rights</button>
+        <button class="era-btn" data-era="1980" onclick="setEra('1980',this)">1980 — Reagan</button>
+        <button class="era-btn" data-era="2000" onclick="setEra('2000',this)">2000 — Bush/Gore</button>
+        <button class="era-btn" data-era="2020" onclick="setEra('2020',this)">2020 — Biden/Trump</button>
+      </div>
+
+      <!-- Era description bar -->
+      <div id="era-desc" style="background:var(--paper-dark); border-left:4px solid var(--gold); padding:0.9rem 1.2rem; margin-bottom:1.4rem; font-size:0.9rem; font-style:italic; color:#3a3a35; min-height:56px;"></div>
+
+      <!-- SVG Map -->
+      <div style="overflow-x:auto;">
+        <svg id="us-map" viewBox="0 0 960 620" style="width:100%; max-width:960px; display:block; margin:0 auto; font-family:'IBM Plex Mono',monospace;">
+          <defs>
+            <pattern id="stripe-dem" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+              <rect width="3" height="6" fill="#1a4a8a" opacity="0.6"/>
+              <rect x="3" width="3" height="6" fill="#d6e4f7"/>
+            </pattern>
+            <pattern id="stripe-rep" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+              <rect width="3" height="6" fill="#8b1a1a" opacity="0.6"/>
+              <rect x="3" width="3" height="6" fill="#f7d6d6"/>
+            </pattern>
+          </defs>
+          <!-- States as simplified representative polygons — positioned by region -->
+          <!-- Row 1: Pacific -->
+          <g id="WA"><rect x="60" y="30" width="80" height="60" rx="2"/><text x="100" y="68">WA</text></g>
+          <g id="OR"><rect x="60" y="100" width="80" height="60" rx="2"/><text x="100" y="138">OR</text></g>
+          <g id="CA"><rect x="60" y="170" width="80" height="110" rx="2"/><text x="100" y="233">CA</text></g>
+          <g id="AK"><rect x="60" y="510" width="80" height="60" rx="2"/><text x="100" y="548">AK</text></g>
+          <g id="HI"><rect x="160" y="510" width="80" height="60" rx="2"/><text x="200" y="548">HI</text></g>
+          <!-- Col 2: Mountain -->
+          <g id="ID"><rect x="160" y="30" width="70" height="80" rx="2"/><text x="195" y="78">ID</text></g>
+          <g id="NV"><rect x="160" y="120" width="70" height="80" rx="2"/><text x="195" y="168">NV</text></g>
+          <g id="AZ"><rect x="160" y="210" width="70" height="70" rx="2"/><text x="195" y="253">AZ</text></g>
+          <g id="MT"><rect x="240" y="30" width="90" height="60" rx="2"/><text x="285" y="68">MT</text></g>
+          <g id="WY"><rect x="240" y="100" width="80" height="60" rx="2"/><text x="280" y="138">WY</text></g>
+          <g id="CO"><rect x="240" y="170" width="80" height="60" rx="2"/><text x="280" y="208">CO</text></g>
+          <g id="NM"><rect x="240" y="240" width="80" height="60" rx="2"/><text x="280" y="278">NM</text></g>
+          <g id="UT"><rect x="160" y="290" width="70" height="60" rx="2"/><text x="195" y="328">UT</text></g>
+          <!-- Col 3: Central -->
+          <g id="ND"><rect x="340" y="30" width="70" height="55" rx="2"/><text x="375" y="65">ND</text></g>
+          <g id="SD"><rect x="340" y="95" width="70" height="55" rx="2"/><text x="375" y="130">SD</text></g>
+          <g id="NE"><rect x="340" y="160" width="70" height="50" rx="2"/><text x="375" y="193">NE</text></g>
+          <g id="KS"><rect x="340" y="220" width="70" height="50" rx="2"/><text x="375" y="253">KS</text></g>
+          <g id="OK"><rect x="340" y="280" width="70" height="50" rx="2"/><text x="375" y="313">OK</text></g>
+          <g id="TX"><rect x="300" y="340" width="110" height="90" rx="2"/><text x="355" y="393">TX</text></g>
+          <g id="MN"><rect x="420" y="30" width="70" height="60" rx="2"/><text x="455" y="68">MN</text></g>
+          <g id="IA"><rect x="420" y="100" width="70" height="50" rx="2"/><text x="455" y="133">IA</text></g>
+          <g id="MO"><rect x="420" y="160" width="70" height="55" rx="2"/><text x="455" y="196">MO</text></g>
+          <g id="AR"><rect x="420" y="225" width="70" height="50" rx="2"/><text x="455" y="258">AR</text></g>
+          <g id="LA"><rect x="420" y="285" width="70" height="50" rx="2"/><text x="455" y="318">LA</text></g>
+          <!-- Col 4: Great Lakes / Upper South -->
+          <g id="WI"><rect x="500" y="30" width="65" height="60" rx="2"/><text x="532" y="68">WI</text></g>
+          <g id="IL"><rect x="500" y="100" width="55" height="65" rx="2"/><text x="527" y="140">IL</text></g>
+          <g id="MS"><rect x="500" y="175" width="55" height="60" rx="2"/><text x="527" y="213">MS</text></g>
+          <g id="AL"><rect x="500" y="245" width="55" height="60" rx="2"/><text x="527" y="283">AL</text></g>
+          <g id="MI"><rect x="565" y="30" width="65" height="60" rx="2"/><text x="597" y="68">MI</text></g>
+          <g id="IN"><rect x="565" y="100" width="55" height="55" rx="2"/><text x="592" y="135">IN</text></g>
+          <g id="KY"><rect x="555" y="165" width="65" height="50" rx="2"/><text x="587" y="198">KY</text></g>
+          <g id="TN"><rect x="555" y="225" width="65" height="50" rx="2"/><text x="587" y="258">TN</text></g>
+          <g id="GA"><rect x="555" y="285" width="65" height="60" rx="2"/><text x="587" y="323">GA</text></g>
+          <g id="FL"><rect x="555" y="355" width="65" height="70" rx="2"/><text x="587" y="398">FL</text></g>
+          <!-- Col 5: Mid-Atlantic / Southeast -->
+          <g id="OH"><rect x="635" y="100" width="60" height="55" rx="2"/><text x="665" y="135">OH</text></g>
+          <g id="WV"><rect x="635" y="165" width="55" height="50" rx="2"/><text x="662" y="198">WV</text></g>
+          <g id="NC"><rect x="635" y="225" width="65" height="50" rx="2"/><text x="667" y="258">NC</text></g>
+          <g id="SC"><rect x="635" y="285" width="60" height="50" rx="2"/><text x="665" y="318">SC</text></g>
+          <!-- Col 6: Northeast -->
+          <g id="PA"><rect x="705" y="100" width="65" height="55" rx="2"/><text x="737" y="135">PA</text></g>
+          <g id="VA"><rect x="700" y="165" width="65" height="50" rx="2"/><text x="732" y="198">VA</text></g>
+          <g id="MD"><rect x="700" y="225" width="60" height="40" rx="2"/><text x="730" y="250">MD</text></g>
+          <g id="DE"><rect x="700" y="275" width="50" height="35" rx="2"/><text x="725" y="298">DE</text></g>
+          <g id="NY"><rect x="775" y="60" width="65" height="60" rx="2"/><text x="807" y="98">NY</text></g>
+          <g id="NJ"><rect x="775" y="130" width="50" height="45" rx="2"/><text x="800" y="158">NJ</text></g>
+          <g id="CT"><rect x="835" y="130" width="45" height="40" rx="2"/><text x="857" y="157">CT</text></g>
+          <g id="RI"><rect x="835" y="178" width="40" height="35" rx="2"/><text x="855" y="201">RI</text></g>
+          <g id="MA"><rect x="835" y="80" width="65" height="40" rx="2"/><text x="867" y="107">MA</text></g>
+          <g id="VT"><rect x="835" y="30" width="35" height="42" rx="2"/><text x="852" y="58">VT</text></g>
+          <g id="NH"><rect x="878" y="30" width="35" height="42" rx="2"/><text x="895" y="58">NH</text></g>
+          <g id="ME"><rect x="900" y="10" width="50" height="65" rx="2"/><text x="925" y="51">ME</text></g>
+          <g id="DC"><rect x="770" y="220" width="40" height="35" rx="2"/><text x="790" y="243">DC</text></g>
+        </svg>
+      </div>
+
+      <!-- Legend -->
+      <div style="display:flex; gap:1.5rem; justify-content:center; margin-top:1.2rem; flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;">
+          <span style="display:inline-block;width:20px;height:14px;background:#1a4a8a;border-radius:2px;"></span> Democrat
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;">
+          <span style="display:inline-block;width:20px;height:14px;background:#8b1a1a;border-radius:2px;"></span> Republican
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;">
+          <span style="display:inline-block;width:20px;height:14px;background:#7a5a9a;border-radius:2px;"></span> Contested / Third Party
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;">
+          <span style="display:inline-block;width:20px;height:14px;background:#aaa;border-radius:2px;"></span> Not yet a state / N/A
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 7: IDEOLOGY MOVEMENT CHART
+═══════════════════════════════════════════════════════ -->
+<section id="ideology-chart">
+  <div class="container">
+    <div class="section-label">§ 07 — Ideology Movement Chart</div>
+    <h2 class="section-title">How Each Party Moved Ideologically Over Time</h2>
+    <p class="lead">Two axes tell the story: the left-right spectrum (economic policy) and the federal vs. limited government axis (role of the state). Plot both parties across eight eras to see the crossing paths of American ideology.</p>
+
+    <div style="background:white; border:1px solid var(--rule); padding:1.5rem; margin:2rem 0;">
+
+      <!-- Tab switcher -->
+      <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+        <button class="chart-tab active" onclick="showChart('economic',this)">Economic Left↔Right</button>
+        <button class="chart-tab" onclick="showChart('govsize',this)">Federal Power (Small↔Big Govt)</button>
+        <button class="chart-tab" onclick="showChart('social',this)">Social Policy (Liberal↔Conservative)</button>
+      </div>
+
+      <div id="chart-economic" class="chart-panel">
+        <p style="font-size:0.82rem;font-style:italic;color:var(--gray);margin-bottom:1rem;">Economic Left = labor/redistribution; Economic Right = markets/low taxes. Scale: –5 (far left) to +5 (far right).</p>
+        <canvas id="canvas-economic" width="900" height="360"></canvas>
+      </div>
+      <div id="chart-govsize" class="chart-panel" style="display:none;">
+        <p style="font-size:0.82rem;font-style:italic;color:var(--gray);margin-bottom:1rem;">Big Government = strong federal role; Small Government = states' rights, limited intervention. Scale: –5 (small govt) to +5 (big govt).</p>
+        <canvas id="canvas-govsize" width="900" height="360"></canvas>
+      </div>
+      <div id="chart-social" class="chart-panel" style="display:none;">
+        <p style="font-size:0.82rem;font-style:italic;color:var(--gray);margin-bottom:1rem;">Liberal = progressive social values; Conservative = traditional/religious social values. Scale: –5 (very liberal) to +5 (very conservative).</p>
+        <canvas id="canvas-social" width="900" height="360"></canvas>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Reading the charts:</strong> Notice how the parties effectively cross on the "Federal Power" axis between 1860 and 1980 — Republicans started as the party of strong federal power, Democrats as the states'-rights party. By Reagan's era the positions had fully inverted.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 8: ERA-BY-ERA COMPARISON
+═══════════════════════════════════════════════════════ -->
+<section id="era-comparison">
+  <div class="container">
+    <div class="section-label">§ 08 — Era-by-Era Comparison</div>
+    <h2 class="section-title">Each Party Compared Across Eras</h2>
+    <p class="lead">What did each party stand for on the same key issues in different eras? Select a party to see how its positions evolved — or reversed — across eight historical periods.</p>
+
+    <!-- Party selector -->
+    <div style="display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+      <button class="party-tab dem-tab active" onclick="showParty('dem',this)">Democratic Party</button>
+      <button class="party-tab rep-tab" onclick="showParty('rep',this)">Republican Party</button>
+    </div>
+
+    <div id="comp-dem" class="comp-panel">
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>1828–1860<br><span>Jacksonian</span></th>
+              <th>1861–1896<br><span>Civil War / Gilded Age</span></th>
+              <th>1896–1932<br><span>Populist / Progressive</span></th>
+              <th>1932–1964<br><span>New Deal</span></th>
+              <th>1964–1980<br><span>Great Society</span></th>
+              <th>1980–2000<br><span>Reagan Response</span></th>
+              <th>2000–2016<br><span>Obama Era</span></th>
+              <th>2016–2026<br><span>Progressive Surge</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="issue-col">Federal Power</td>
+              <td class="neg">Strongly opposed — states' rights paramount</td>
+              <td class="neg">Opposed federal Reconstruction; some flexibility</td>
+              <td class="neg">Mixed — populist but wary of federal overreach</td>
+              <td class="pos">Strongly favored — New Deal programs expand federal role dramatically</td>
+              <td class="pos">Expanded — Great Society, civil rights enforcement</td>
+              <td class="mid">Moderated — Clinton shrinks government rhetorically</td>
+              <td class="pos">Favored — ACA, Dodd-Frank, climate regulation</td>
+              <td class="pos">Strongly favored — Green New Deal, expanded programs</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Economic Policy</td>
+              <td class="neg">Anti-tariff, anti-national bank, agrarian</td>
+              <td class="neg">Anti-tariff, pro-debtor (silver coinage)</td>
+              <td class="mid">Anti-monopoly, pro-labor, populist</td>
+              <td class="pos">Keynesian stimulus, labor rights, Social Security</td>
+              <td class="pos">War on Poverty, Medicare/Medicaid, Great Society spending</td>
+              <td class="mid">Third Way — NAFTA, balanced budgets, welfare reform</td>
+              <td class="pos">Stimulus, regulation, progressive taxation</td>
+              <td class="pos">Medicare for All wing grows; wealth taxes, student debt relief</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Civil Rights / Race</td>
+              <td class="neg">Defended slavery, supported Indian removal</td>
+              <td class="neg">Opposed Reconstruction; "Redeemer" Democrats restore white rule in South</td>
+              <td class="neg">Largely silent or complicit on Jim Crow</td>
+              <td class="mid">Internally split — Northern liberals vs. Southern segregationists</td>
+              <td class="pos">Landmark civil rights legislation; voting rights enforcement</td>
+              <td class="pos">Consistent support; affirmative action, anti-discrimination law</td>
+              <td class="pos">Obama era; expanded civil rights framing to LGBT, immigration</td>
+              <td class="pos">Strong racial justice emphasis; "defund" debates; DEI programs</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Immigration</td>
+              <td class="mid">Favored expansion (white settlers); nativist tensions</td>
+              <td class="mid">Mixed</td>
+              <td class="neg">Some restrictionist sentiment (labor competition concerns)</td>
+              <td class="mid">Generally permissive</td>
+              <td class="mid">Permissive; Hart-Celler 1965 opens immigration dramatically</td>
+              <td class="mid">Clinton signs border enforcement bills; NAFTA accelerates migration</td>
+              <td class="pos">Pro-immigration reform; DACA; path to citizenship</td>
+              <td class="pos">Strong pro-immigration stance; criticism of enforcement</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Social / Cultural</td>
+              <td class="neg">Deeply conservative — Protestant, patriarchal</td>
+              <td class="neg">Conservative; Solid South enforces rigid social hierarchy</td>
+              <td class="neg">Largely socially conservative; Bryan's religious populism</td>
+              <td class="mid">Economically progressive, socially cautious</td>
+              <td class="mid">Social liberalism grows — women's rights, counterculture allies</td>
+              <td class="pos">Abortion rights, gay rights become party positions</td>
+              <td class="pos">Marriage equality, LGBTQ+ rights, reproductive rights</td>
+              <td class="pos">Gender identity, pronouns, reproductive rights, criminal justice reform</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Trade</td>
+              <td class="neg">Anti-tariff, free trade</td>
+              <td class="neg">Anti-tariff</td>
+              <td class="neg">Anti-tariff</td>
+              <td class="mid">Reciprocal trade; pro-multilateral</td>
+              <td class="pos">Supported Bretton Woods, free trade agreements</td>
+              <td class="mid">NAFTA — free trade with conditions</td>
+              <td class="pos">Generally pro-free trade</td>
+              <td class="mid">Mixed; Sanders wing critical of free trade; Biden reshores supply chains</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="comp-rep" class="comp-panel" style="display:none;">
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>1854–1876<br><span>Founding / Reconstruction</span></th>
+              <th>1877–1900<br><span>Gilded Age</span></th>
+              <th>1900–1932<br><span>Progressive / Normalcy</span></th>
+              <th>1932–1964<br><span>Anti–New Deal</span></th>
+              <th>1964–1980<br><span>Southern Strategy</span></th>
+              <th>1980–2000<br><span>Reagan Revolution</span></th>
+              <th>2000–2016<br><span>Bush / Tea Party</span></th>
+              <th>2016–2026<br><span>MAGA / Trump</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="issue-col">Federal Power</td>
+              <td class="pos">Strongly favored — used federal power to abolish slavery, reconstruct South, build transcontinental railroad</td>
+              <td class="mid">Moderated — used tariffs and federal spending but less activist post-Reconstruction</td>
+              <td class="mid">TR: federal regulation of corporations; Harding/Coolidge: roll back</td>
+              <td class="neg">Strongly opposed — "creeping socialism," anti-New Deal</td>
+              <td class="neg">Opposed federal mandates; law & order framing shifts focus to states</td>
+              <td class="neg">Reagan: "government is the problem" — tax cuts, deregulation</td>
+              <td class="neg">Anti-federal except for national security (post-9/11 expansion of executive power)</td>
+              <td class="mid">Mixed — opposes "deep state" but uses executive power aggressively; tariffs = federal intervention</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Economic Policy</td>
+              <td class="pos">Pro-tariff, pro-homestead, pro-infrastructure (transcontinental railroad)</td>
+              <td class="pos">High tariffs protect industry; aligned with big business</td>
+              <td class="mid">TR busts trusts; Taft/Harding favor laissez-faire</td>
+              <td class="neg">Anti-spending, pro-business, low-tax opposition to New Deal</td>
+              <td class="neg">Low taxes, business-friendly, anti-labor regulations</td>
+              <td class="neg">Supply-side "Reaganomics" — tax cuts, deregulation, union-busting</td>
+              <td class="neg">Tax cuts (Bush), small government rhetoric, Tea Party austerity</td>
+              <td class="mid">Economic nationalism — tariffs return; tax cuts remain; populist anti-elitism</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Civil Rights / Race</td>
+              <td class="pos">Abolished slavery; Reconstruction Amendments; Freedmen's Bureau</td>
+              <td class="neg">Compromise of 1877 ends Reconstruction; retreats from Black civil rights</td>
+              <td class="neg">Largely silent; TR dines with Booker T. Washington but takes no legislative action</td>
+              <td class="mid">Some support for civil rights bills — Eisenhower sends troops to Little Rock</td>
+              <td class="neg">Southern Strategy courts white backlash against civil rights; "law and order" coded messaging</td>
+              <td class="neg">Opposed affirmative action; "color-blind" rhetoric</td>
+              <td class="neg">Voter ID laws, opposition to affirmative action</td>
+              <td class="neg">Strongly anti-DEI, anti-CRT; voter restriction laws; replacement theory adjacent rhetoric</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Immigration</td>
+              <td class="mid">Generally open — needed settlers and labor</td>
+              <td class="neg">Supported Chinese Exclusion Act (1882); rising nativism</td>
+              <td class="neg">Immigration restriction — National Origins Act (1924) under Coolidge</td>
+              <td class="mid">Mixed</td>
+              <td class="mid">Nixon/Ford: not central; Reagan 1986 signs amnesty (IRCA)</td>
+              <td class="mid">Reagan amnesty legacy; Bush attempted comprehensive reform 2007 (failed)</td>
+              <td class="neg">Tea Party hardlines; "self-deportation" (Romney); anti-DACA</td>
+              <td class="neg">Mass deportation rhetoric; border wall; end of DACA; family separation policy</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Social / Cultural</td>
+              <td class="pos">Anti-slavery moral reform; Protestant progressive ethos</td>
+              <td class="mid">Conservative on social order; temperance movement allies</td>
+              <td class="mid">Prohibition support; Progressive era reform mixed with social traditionalism</td>
+              <td class="mid">Moderate social conservatism; Eisenhower-era values</td>
+              <td class="mid">Social conservatism grows; Falwell's Moral Majority aligns with GOP</td>
+              <td class="neg">Culture war formalized — abortion, school prayer, anti-gay rights</td>
+              <td class="neg">Same-sex marriage opposition; evangelical base solidified</td>
+              <td class="neg">Anti-trans legislation, anti-DEI, anti-"woke," book bans, parental rights framing</td>
+            </tr>
+            <tr>
+              <td class="issue-col">Trade</td>
+              <td class="pos">High tariffs to protect Northern industry — foundational policy</td>
+              <td class="pos">McKinley Tariff; high protectionism as core GOP policy</td>
+              <td class="mid">Still protectionist but Smoot-Hawley (1930) damages credibility</td>
+              <td class="mid">Moving toward multilateral trade post-WWII</td>
+              <td class="pos">Free trade consensus builds</td>
+              <td class="pos">GATT, WTO, NAFTA negotiations — free trade as Republican orthodoxy</td>
+              <td class="pos">Free trade strongly favored; globalization championed</td>
+              <td class="neg">Trump reverses course — tariffs return; "America First" trade nationalism</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ── ERA BUTTONS ── */
+.era-btn {
+  background: var(--paper-dark);
+  border: 1px solid var(--rule);
+  color: var(--gray);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.era-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.era-btn.active { background: var(--ink); color: var(--gold); border-color: var(--ink); font-weight: 500; }
+
+/* ── MAP STATE STYLING ── */
+#us-map g { cursor: default; }
+#us-map g rect { stroke: rgba(255,255,255,0.5); stroke-width: 1.5; }
+#us-map g text {
+  font-size: 11px;
+  fill: white;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── CHART TABS ── */
+.chart-tab {
+  background: var(--paper-dark);
+  border: 1px solid var(--rule);
+  color: var(--gray);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.chart-tab:hover { background: var(--paper); color: var(--ink); }
+.chart-tab.active { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+
+/* ── PARTY TABS ── */
+.party-tab {
+  padding: 0.5rem 1.8rem;
+  border: 2px solid;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.dem-tab { border-color: var(--dem); color: var(--dem); background: transparent; }
+.dem-tab.active { background: var(--dem); color: white; }
+.rep-tab { border-color: var(--rep); color: var(--rep); background: transparent; }
+.rep-tab.active { background: var(--rep); color: white; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 900px;
+}
+.comp-table th {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.comp-table th span {
+  display: block;
+  color: var(--gold);
+  font-size: 0.62rem;
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+.comp-table th:first-child { width: 110px; }
+.comp-table td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  line-height: 1.45;
+  color: #2a2a25;
+}
+.comp-table tr:nth-child(even) td { background: var(--paper-dark); }
+.comp-table tr:hover td { background: #e8e2d0; }
+.issue-col {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ink) !important;
+  background: var(--paper-dark) !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+td.pos { border-top: 2px solid #2a7a2a; }
+td.neg { border-top: 2px solid #c0392b; }
+td.mid { border-top: 2px solid var(--gold); }
+
+canvas { width: 100% !important; max-width: 900px; display: block; margin: 0 auto; }
+</style>
+
+<script>
+/* ════════════════════════════════════════════════
+   GEOGRAPHIC MAP DATA
+════════════════════════════════════════════════ */
+const eras = {
+  '1860': {
+    desc: '<strong>1860 Presidential Election (Lincoln vs. Douglas vs. Breckinridge vs. Bell):</strong> Lincoln carries the North and West; Southern states back Breckinridge (Southern Democrat) or Bell (Constitutional Union). The map perfectly illustrates the sectional split that triggers the Civil War. Republicans hold no Southern states.',
+    states: {
+      ME:'R',NH:'R',VT:'R',MA:'R',RI:'R',CT:'R',NY:'R',NJ:'R',PA:'R',
+      OH:'R',IN:'R',IL:'R',MI:'R',WI:'R',MN:'R',IA:'R',
+      MD:'O',DE:'O',KY:'O',TN:'O',MO:'O',
+      VA:'D',NC:'D',SC:'D',GA:'D',FL:'D',AL:'D',MS:'D',LA:'D',AR:'D',TX:'D',
+      WA:'N',OR:'R',CA:'R',
+      CO:'N',NV:'N',NE:'N',KS:'N',ND:'N',SD:'N',WY:'N',MT:'N',ID:'N',UT:'N',AZ:'N',NM:'N',OK:'N',
+      WV:'N',AK:'N',HI:'N',DC:'N'
+    }
+  },
+  '1896': {
+    desc: '<strong>1896 Presidential Election (McKinley R vs. Bryan D):</strong> Bryan\'s populist campaign carries the South and parts of the West; McKinley wins the Northeast, Midwest, and Pacific Coast. The "Solid South" — fully Democratic — is now established and will hold for 60 years.',
+    states: {
+      ME:'R',NH:'R',VT:'R',MA:'R',RI:'R',CT:'R',NY:'R',NJ:'R',PA:'R',
+      OH:'R',IN:'R',IL:'R',MI:'R',WI:'R',MN:'R',IA:'R',ND:'R',SD:'R',NE:'D',KS:'D',
+      MD:'R',DE:'R',WV:'R',KY:'D',
+      VA:'D',NC:'D',SC:'D',GA:'D',FL:'D',AL:'D',MS:'D',LA:'D',AR:'D',TX:'D',TN:'D',MO:'D',OK:'N',
+      OR:'R',CA:'R',WA:'R',
+      CO:'D',NV:'D',UT:'R',WY:'R',MT:'D',ID:'D',AZ:'N',NM:'N',
+      AK:'N',HI:'N',DC:'N'
+    }
+  },
+  '1932': {
+    desc: '<strong>1932 Presidential Election (FDR D vs. Hoover R):</strong> FDR wins a historic landslide as the Great Depression devastates Hoover\'s credibility. Democrats carry the South (as always), but now also sweep the West and much of the Midwest. Only 6 northeastern states hold for Hoover.',
+    states: {
+      ME:'R',NH:'R',VT:'R',MA:'D',RI:'D',CT:'D',NY:'D',NJ:'D',PA:'D',
+      OH:'D',IN:'D',IL:'D',MI:'D',WI:'D',MN:'D',IA:'D',ND:'R',SD:'R',NE:'D',KS:'R',
+      MD:'D',DE:'D',WV:'D',KY:'D',
+      VA:'D',NC:'D',SC:'D',GA:'D',FL:'D',AL:'D',MS:'D',LA:'D',AR:'D',TX:'D',TN:'D',MO:'D',OK:'D',
+      OR:'D',CA:'D',WA:'D',
+      CO:'D',NV:'D',UT:'D',WY:'D',MT:'D',ID:'D',AZ:'D',NM:'D',
+      AK:'N',HI:'N',DC:'N'
+    }
+  },
+  '1964': {
+    desc: '<strong>1964 Presidential Election (LBJ D vs. Goldwater R):</strong> LBJ wins 44 states in a massive landslide. The pivotal shift: <em>five Deep South states</em> — Alabama, Georgia, Louisiana, Mississippi, South Carolina — vote Republican for the first time since Reconstruction, directly responding to LBJ\'s signing of the Civil Rights Act. This is the visible beginning of the Southern realignment.',
+    states: {
+      ME:'D',NH:'D',VT:'D',MA:'D',RI:'D',CT:'D',NY:'D',NJ:'D',PA:'D',
+      OH:'D',IN:'D',IL:'D',MI:'D',WI:'D',MN:'D',IA:'D',ND:'D',SD:'D',NE:'D',KS:'D',
+      MD:'D',DE:'D',WV:'D',KY:'D',
+      VA:'D',NC:'D',SC:'R',GA:'R',FL:'D',AL:'R',MS:'R',LA:'R',AR:'D',TX:'D',TN:'D',MO:'D',OK:'D',
+      OR:'D',CA:'D',WA:'D',
+      CO:'D',NV:'D',UT:'D',WY:'D',MT:'D',ID:'D',AZ:'R',NM:'D',
+      AK:'D',HI:'D',DC:'D'
+    }
+  },
+  '1980': {
+    desc: '<strong>1980 Presidential Election (Reagan R vs. Carter D):</strong> Reagan\'s landslide completes the Southern realignment. The once-Democratic Solid South is now solidly Republican. Reagan wins 44 states. Carter holds only Georgia (his home state), Minnesota, West Virginia, Maryland, Rhode Island, Hawaii, and DC. The modern electoral map is born.',
+    states: {
+      ME:'R',NH:'R',VT:'R',MA:'D',RI:'D',CT:'R',NY:'R',NJ:'R',PA:'R',
+      OH:'R',IN:'R',IL:'R',MI:'R',WI:'R',MN:'D',IA:'R',ND:'R',SD:'R',NE:'R',KS:'R',
+      MD:'D',DE:'R',WV:'D',KY:'R',
+      VA:'R',NC:'R',SC:'R',GA:'D',FL:'R',AL:'R',MS:'R',LA:'R',AR:'R',TX:'R',TN:'R',MO:'R',OK:'R',
+      OR:'R',CA:'R',WA:'R',
+      CO:'R',NV:'R',UT:'R',WY:'R',MT:'R',ID:'R',AZ:'R',NM:'R',
+      AK:'R',HI:'D',DC:'D'
+    }
+  },
+  '2000': {
+    desc: '<strong>2000 Presidential Election (Bush R vs. Gore D):</strong> The modern "blue coast, red interior" geography fully crystallizes. Gore wins the coasts, Great Lakes, and urban centers. Bush wins the South, Plains, Mountain West, and rural America. Florida\'s 537-vote margin decides the presidency.',
+    states: {
+      ME:'D',NH:'R',VT:'D',MA:'D',RI:'D',CT:'D',NY:'D',NJ:'D',PA:'D',
+      OH:'R',IN:'R',IL:'D',MI:'D',WI:'D',MN:'D',IA:'R',ND:'R',SD:'R',NE:'R',KS:'R',
+      MD:'D',DE:'D',WV:'R',KY:'R',
+      VA:'R',NC:'R',SC:'R',GA:'R',FL:'R',AL:'R',MS:'R',LA:'R',AR:'R',TX:'R',TN:'R',MO:'R',OK:'R',
+      OR:'D',CA:'D',WA:'D',
+      CO:'R',NV:'R',UT:'R',WY:'R',MT:'R',ID:'R',AZ:'R',NM:'D',
+      AK:'R',HI:'D',DC:'D'
+    }
+  },
+  '2020': {
+    desc: '<strong>2020 Presidential Election (Biden D vs. Trump R):</strong> Biden recaptures the "Blue Wall" (Pennsylvania, Michigan, Wisconsin) and flips Sun Belt states Georgia and Arizona — a sign of demographic change. Yet Trump\'s coalition of rural, non-college white voters holds the South and interior. The parties\' geographic coalitions are the most sorted in American history.',
+    states: {
+      ME:'D',NH:'D',VT:'D',MA:'D',RI:'D',CT:'D',NY:'D',NJ:'D',PA:'D',
+      OH:'R',IN:'R',IL:'D',MI:'D',WI:'D',MN:'D',IA:'R',ND:'R',SD:'R',NE:'R',KS:'R',
+      MD:'D',DE:'D',WV:'R',KY:'R',
+      VA:'D',NC:'R',SC:'R',GA:'D',FL:'R',AL:'R',MS:'R',LA:'R',AR:'R',TX:'R',TN:'R',MO:'R',OK:'R',
+      OR:'D',CA:'D',WA:'D',
+      CO:'D',NV:'D',UT:'R',WY:'R',MT:'R',ID:'R',AZ:'D',NM:'D',
+      AK:'R',HI:'D',DC:'D'
+    }
+  }
+};
+
+const stateColors = { R: '#8b1a1a', D: '#1a4a8a', O: '#7a5a9a', N: '#aaaaaa' };
+
+function setEra(era, btn) {
+  document.querySelectorAll('.era-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const data = eras[era];
+  document.getElementById('era-desc').innerHTML = data.desc;
+  const svg = document.getElementById('us-map');
+  Object.entries(data.states).forEach(([state, party]) => {
+    const g = svg.querySelector('#' + state);
+    if (g) {
+      const rect = g.querySelector('rect');
+      if (rect) rect.setAttribute('fill', stateColors[party] || '#aaa');
+    }
+  });
+}
+
+// Initialize map
+window.addEventListener('DOMContentLoaded', () => {
+  setEra('1860', document.querySelector('.era-btn[data-era="1860"]'));
+  drawAllCharts();
+});
+
+/* ════════════════════════════════════════════════
+   IDEOLOGY CHART DATA & DRAWING
+════════════════════════════════════════════════ */
+const eras_labels = ['1828\nJacksonian','1860\nCivil War','1896\nGilded Age','1932\nNew Deal','1964\nCivil Rights','1980\nReagan','2000\nBush/Clinton','2020\nToday'];
+
+// Economic: -5 = far left, +5 = far right
+const economic_dem = [-2, -1.5, -2.5, -4, -3.5, -2, -2.5, -3.5];
+const economic_rep = [+1, +2,  +3,   +2.5, +3,   +4,  +3.5,  +2]; // Trump moves slightly left on trade
+
+// Gov size: -5 = small govt, +5 = big govt
+const govsize_dem = [-3, -2, -1.5, +4, +4.5, +3, +3.5, +4.5];
+const govsize_rep = [+1, +3,  +2,  -2, -3,   -4, -4,   -2]; // MAGA uses govt power but rhetorically anti-govt
+
+// Social: -5 = very liberal, +5 = very conservative
+const social_dem = [+4, +3, +3.5, +1.5, -1, -2.5, -3.5, -4.5];
+const social_rep = [+2, +1, +2,   +2,  +3,  +3.5, +4,   +4.5];
+
+const chartData = {
+  economic: { dem: economic_dem, rep: economic_rep, yLabel: 'Left ← Economic → Right', midLabel: 'Center' },
+  govsize:  { dem: govsize_dem,  rep: govsize_rep,  yLabel: 'Small ← Govt Size → Big', midLabel: 'Moderate' },
+  social:   { dem: social_dem,   rep: social_rep,   yLabel: 'Liberal ← Social → Conservative', midLabel: 'Moderate' }
+};
+
+function drawChart(canvasId, demData, repData, yLabel) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const padL = 60, padR = 40, padT = 40, padB = 70;
+  const chartW = W - padL - padR, chartH = H - padT - padB;
+  const n = eras_labels.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  for (let v = -5; v <= 5; v++) {
+    const y = padT + chartH * (1 - (v + 5) / 10);
+    ctx.beginPath();
+    ctx.strokeStyle = v === 0 ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.07)';
+    ctx.lineWidth = v === 0 ? 1.5 : 1;
+    ctx.moveTo(padL, y); ctx.lineTo(padL + chartW, y);
+    ctx.stroke();
+    if (v % 1 === 0) {
+      ctx.fillStyle = '#999';
+      ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText(v > 0 ? '+' + v : v, padL - 8, y + 4);
+    }
+  }
+
+  // Vertical grid lines
+  for (let i = 0; i < n; i++) {
+    const x = padL + (i / (n - 1)) * chartW;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+    ctx.lineWidth = 1;
+    ctx.moveTo(x, padT); ctx.lineTo(x, padT + chartH);
+    ctx.stroke();
+  }
+
+  // Shading between lines
+  function plotArea(data, color) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const x = padL + (i / (n - 1)) * chartW;
+      const y = padT + chartH * (1 - (data[i] + 5) / 10);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.lineTo(padL + chartW, padT + chartH);
+    ctx.lineTo(padL, padT + chartH);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  // Draw line
+  function plotLine(data, color, dash = []) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.setLineDash(dash);
+    ctx.lineJoin = 'round';
+    for (let i = 0; i < n; i++) {
+      const x = padL + (i / (n - 1)) * chartW;
+      const y = padT + chartH * (1 - (data[i] + 5) / 10);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Dots
+  function plotDots(data, color) {
+    for (let i = 0; i < n; i++) {
+      const x = padL + (i / (n - 1)) * chartW;
+      const y = padT + chartH * (1 - (data[i] + 5) / 10);
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  plotLine(demData, 'rgba(26,74,138,0.9)');
+  plotLine(repData, 'rgba(139,26,26,0.9)', [8, 4]);
+  plotDots(demData, '#1a4a8a');
+  plotDots(repData, '#8b1a1a');
+
+  // X axis labels
+  ctx.fillStyle = '#444';
+  ctx.font = '10px IBM Plex Mono, monospace';
+  ctx.textAlign = 'center';
+  eras_labels.forEach((label, i) => {
+    const x = padL + (i / (n - 1)) * chartW;
+    const lines = label.split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, x, padT + chartH + 18 + li * 14);
+    });
+  });
+
+  // Legend
+  ctx.font = '11px IBM Plex Mono, monospace';
+  ctx.textAlign = 'left';
+  // Dem
+  ctx.strokeStyle = '#1a4a8a'; ctx.lineWidth = 3; ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(padL, 18); ctx.lineTo(padL + 30, 18); ctx.stroke();
+  ctx.fillStyle = '#1a4a8a';
+  ctx.fillText('Democratic Party', padL + 36, 22);
+  // Rep
+  ctx.strokeStyle = '#8b1a1a'; ctx.lineWidth = 3; ctx.setLineDash([8, 4]);
+  ctx.beginPath(); ctx.moveTo(padL + 200, 18); ctx.lineTo(padL + 230, 18); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#8b1a1a';
+  ctx.fillText('Republican Party', padL + 236, 22);
+
+  // Zero line label
+  const y0 = padT + chartH * 0.5;
+  ctx.fillStyle = 'rgba(0,0,0,0.35)';
+  ctx.font = 'italic 10px Source Serif 4, serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('← Center →', padL - 10, y0 + 4);
+}
+
+function drawAllCharts() {
+  drawChart('canvas-economic', economic_dem, economic_rep, 'Economic');
+  drawChart('canvas-govsize', govsize_dem, govsize_rep, 'Govt Size');
+  drawChart('canvas-social', social_dem, social_rep, 'Social');
+}
+
+function showChart(type, btn) {
+  document.querySelectorAll('.chart-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.chart-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('chart-' + type).style.display = 'block';
+}
+
+/* ════════════════════════════════════════════════
+   COMPARISON TABLE TOGGLE
+════════════════════════════════════════════════ */
+function showParty(party, btn) {
+  document.querySelectorAll('.party-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.comp-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('comp-' + party).style.display = 'block';
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer>
+  <strong>THE AMERICAN POLITICAL DIVIDE — AN IDEOLOGICAL HISTORY REPORT</strong><br>
+  Sources & Methodology: This report synthesizes findings from American political history scholarship including works by<br>
+  V.O. Key Jr., Arthur Schlesinger Jr., Heather Cox Richardson, Thomas Frank, and data from the<br>
+  Pew Research Center's American Values Survey and DW-NOMINATE Congressional voting scores.<br><br>
+  For educational and analytical purposes · Compiled 2026
+</footer>
+
+</body>
+</html>
